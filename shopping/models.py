@@ -5,7 +5,7 @@ class Post(models.Model):
     hook_text = models.CharField(max_length=100, blank=True)
     content = models.TextField(default = '')
 
-    head_image = models.ImageField(upload_to='shopping/images/%Y/%m/%d/')
+    head_image = models.ImageField(upload_to='shopping/images/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -13,4 +13,4 @@ class Post(models.Model):
         return f'[{self.pk}]{self.title}'
 
     def get_absolute_url(self):
-        return f'/shop/{self.pk}/'
+        return f'/shopping/{self.pk}/'
