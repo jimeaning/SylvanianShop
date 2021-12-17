@@ -1,5 +1,12 @@
 {% extends 'shopping/base.html' %}
 {% block main-area %}
+        {% if user.is_authenticated %}
+            {% if user.is_staff or user.is_superuser %}
+                <a class="btn btn-info btn-small float-right" href="/shopping/create_prod">
+                    <i class="fas fa-pen"></i>New Post
+                </a>
+            {% endif %}
+        {% endif %}
                     <h1>
                         {% if category %}
                             <span>{{ category }}</span>

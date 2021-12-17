@@ -1,0 +1,16 @@
+{% extends 'shopping/base_full_width.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %}
+    Add Product
+{% endblock %}
+{% block main-area %}
+    <h1>Create New Product</h1>
+    <hr/>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            {{form | crispy}}
+        <br>
+        <button type="submit" class="btn btn-primary float-right">Submit</button>
+    </form>
+    {{form.media}}
+{% endblock %}
