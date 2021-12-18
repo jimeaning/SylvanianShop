@@ -1,10 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load static %}
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>landing</title>
+    <link href="{% static 'shopping/bootstrap/styles.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{% static 'single_pages/css/landing.css' %}" rel="stylesheet" type="text/css" media="screen">
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Navigation-->
+    {% include 'shopping/navbar.html' %}
 
+    <section>
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-6">
+                <h1 class="mt-5 fw-bold">도르래</h1>
+                <p>도르래는 순우리말로 장난감이라는 뜻을 가지고 있습니다.
+                    실바니안 패밀리는 1950년대 영국 교외에 살고있는 중산층 가족의 생활을 주제로 하여 귀여운 동물 인형과 정교한 가구가 가득한 곳입니다.
+                    실바니안 패밀리는 세상 사람들 모두가 행복한 삶을 꿈꾸고 있습니다!
+                </p>
+            </div>
+            <div class="mt-4 col-lg-5">
+                <h2 class="text-light">Check Recent products</h2>
+                {% for post in recent_posts %}
+                <div class="card mt-1">
+                    <div class="card-body">
+                        <h6><a href="{{post.get_absolute_url}}" class="text-decoration-none text-dark">{{post.title}}</a></h6>
+                        <span class="badge bg-light text-dark float-right">
+                            <img class="rounded-circle mr-1" width="20px"
+                                 src="{{post.head_image.url}}">
+                                 {{ post.price }}원
+                                &nbsp;&nbsp;
+                                {{post.created_at}}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer-->
+<div class="fixed-bottom">
+    {% include 'shopping/footer.html' %}
+</div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
 </body>
 </html>
