@@ -20,6 +20,7 @@ class Post(models.Model):
     title = models.CharField(max_length=30)
     hook_text = models.CharField(max_length=100, blank=True)
     content = MarkdownxField()
+    price = models.IntegerField(default=0)
 
     head_image = models.ImageField(upload_to='shopping/images/%Y/%m/%d/', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

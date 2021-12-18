@@ -39,9 +39,9 @@
                                         <div class="bi-star-fill"></div>
                                         <div class="bi-star-fill"></div>
                                     </div>
+                                    <p class="card-text">{{ p.get_content_markdown | truncatewords_html:5 | safe }}</p>
                                     <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
+                                    <p class="fw-bold">{{ p.price }}원</p>
                                 </div>
                             </div>
                             <!-- Product actions-->

@@ -7,7 +7,7 @@ from .models import Post, Category
 
 class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'category']
+    fields = ['title', 'hook_text', 'price', 'content', 'head_image', 'category']
 
     def test_func(self):
         return self.request.user.is_superuser or self.request.user.is_staff
@@ -23,7 +23,7 @@ class PostCreate(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
-    fields = ['title', 'hook_text', 'content', 'head_image', 'category']
+    fields = ['title', 'hook_text', 'price', 'content', 'head_image', 'category']
 
     template_name = 'shopping/post_update_form.html'
 
