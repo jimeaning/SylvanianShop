@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CommentForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
@@ -60,7 +61,7 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class PostList(ListView) :
     model = Post
-    paginate_by = 8
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PostList, self).get_context_data()
@@ -77,6 +78,23 @@ class PostDetail(DetailView) :
         context['categories'] = Category.objects.all()
         context['no_category_post_count'] = Post.objects.filter(category=None).count()
         context['comment_form'] = CommentForm
+        return context
+
+class PostSearch(PostList):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        post_list = Post.objects.filter(
+            Q(title__contains=q)
+        ).distinct()
+        return post_list
+
+    def get_context_data(self, **kwargs):
+        context = super(PostSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'Search : {q}({self.get_queryset().count()})'
+
         return context
 
 def category_page(request, slug):
