@@ -27,41 +27,8 @@
     <!-- Navigation-->
     {% include 'shopping/navbar.html' %}
 
-    <script>
-      var chart = bb.generate({
-        data: {
-          columns: [
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["{{c}}", {{c.post_set.count}}],
-            ["기타", {{no_category_post_count}}],
-          ],
-          type: "donut",
-
-          onclick: function (d, i) {
-            console.log("onclick", d, i);
-          },
-          onover: function (d, i) {
-            console.log("onover", d, i);
-          },
-        },
-        donut: {
-          title: "70",
-        },
-        bindto: "#donut-chart",
-      });
-   </script>
-
     <section>
+        <br><br><br>
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-8">
@@ -97,7 +64,7 @@
             </div>
             <div class="col-4">
                 <div class="card" data-toggle="modal" data-target="#portfolio2">
-                    <img class="card-img-top" src="{% static 'single_pages/images/5503.png' %}">
+                    <img class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">통계 업무</h5>
                         <p>Python, Django로 통계업무 (카테고리 별 상품 갯수)</p>
@@ -106,7 +73,7 @@
             </div>
             <div class="col-4">
                 <div class="card" data-toggle="modal" data-target="#portfolio3">
-                    <img class="card-img-top" src="{% static 'single_pages/images/5503.png' %}">
+                    <img class="card-img-top">
                     <div class="card-body">
                         <h5 class="card-title">통계 업무</h5>
                         <p>Python, Django로 통계업무 (카테고리 별 상품 갯수)</p>
@@ -195,9 +162,42 @@
   </div>
 </div>
 
+    <script>
+      var chart = bb.generate({
+        data: {
+          columns: [
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["{{c}}", {{c.post_set.count}}],
+            ["기타", {{no_category_post_count}}],
+          ],
+          type: "donut",
+
+          onclick: function (d, i) {
+            console.log("onclick", d, i);
+          },
+          onover: function (d, i) {
+            console.log("onover", d, i);
+          },
+        },
+        donut: {
+          title: "70",
+        },
+        bindto: "#donut-chart",
+      });
+   </script>
 
 <!-- Footer-->
-<div>
+<div class="fixed-bottom">
     {% include 'shopping/footer.html' %}
 </div>
 
